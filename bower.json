@@ -1,0 +1,11 @@
+{
+  "name": "angularjs-parking",
+  "description": "this is parking app",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "angular": "~1.4.8"
+  }
+}
