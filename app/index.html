@@ -30,6 +30,30 @@
 	 <input type="text" ng-model="car.plate">
 	 <button ng-click="save(car)">Save</button>
 
+	 <h1>ng-bind</h1>
+		<ul ng-repeat="x in cars">
+		   <li ng-bind="x.plate"></li>
+		</ul>
+		<br>
+		<h1>ng-include</h1>
+		<div ng-include = "views/hello.html">
+			hello
+		</div>
+
+
+		<div ng-style="{color: myColor}">
+
+    <input type="text" ng-model="myColor" placeholder="enter a color name">
+
+    <div ng-repeat="item in cars" ng-class="{'pending-delete': item.checked}">
+      plate #: {{item.plate}}
+        <input type="checkbox" ng-model="item.checked"> <spen ng-show="item.checked">(will be deleted)</span>
+   </div>
+   <p>
+   <div ng-hide="myColor== 'red'">I will hide if the color is set to 'red'.</div>
+</div>
+
+   
 
 </body>
 </html>

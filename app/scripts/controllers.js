@@ -13,8 +13,11 @@ angular
                       {plate:'02ca011'}
                      ];
 
+
+
                      $scope.save = function(car){
                      	$scope.cars.push(angular.copy(car));
                      	delete $scope.car;
                      };
+                     
        });
