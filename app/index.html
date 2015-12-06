@@ -4,43 +4,104 @@
 	<meta charset="UTF-8">
 	<title>parking app</title>
 	<link rel="stylesheet" href="styles/main.css" type="text/css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
 </head>
 <body ng-controller="parkingCtrl">
-	<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
-	<script type="text/javascript" src="scripts/app.js"></script>
-	<script type="text/javascript" src="scripts/controllers.js"></script>
-     <table>
+    <h1 align="center" style="background-color:gray; color:white">IS Parking</h1>
+    <div class="col col-lg-10">
+	    <table class="table table-striped">
      	<thead>
      	<tr>
-     		<th>s.no</th>
-     		<th> plate #</th>
+     		<th>S.No</th>
+            <th>Name</th>
+     		<th>Plate #</th>
+            <th>Phoneno</th>
+            <th>Timein</th>
+            <th>Timeout</th>
+
      	</tr>
      </thead>
      <tbody>
-     	<tr ng-repeat="x in cars">
-     		<td ng-if="$odd" class="odd">{{$index+1}}</td>
-     		<td ng-if="$even">{{$index+1}}</td>
-     		<td ng-if="$odd" class="odd">{{x.plate}}</td>
-     		<td ng-if="$even">{{x.plate}}</td>
+     	<tr ng-repeat="x in cars | orderBy:'name'">
+     		<td>{{$index+1}}</td>
+            <td>{{x.name | uppercase}}</td>
+     		<td>{{x.plate | uppercase | hypencasing:'-'}}</td>
+            <td>{{x.phno }}</td>
+            <td>{{x.timein | uppercase}}</td>
+            <td>{{x.timeout | uppercase}}</td>
+            <td>
+               <button class="btn" ng-click="editCar(x)">
+                 <span class="glyphicon glyphicon-pencil"></span>  Edit
+               </button>
+            </td>
+            <td>
+               <button class="btn" ng-click="deleteCar(x.name)">
+                 <span class="glyphicon glyphicon-trash"></span>  Delete
+               </button>
+            </td>
      	</tr>
      </tbody>
      </table>
+ 
      <br>
+<!--     <form action="" name="carform">
      <label >Enter Plate #</label>
-	 <input type="text" ng-model="car.plate">
-	 <button ng-click="save(car)">Save</button>
+	 <input type="text" ng-model="car.plate" ng-required="true" ng
+     -pattern="/^[0-9a-zA-Z]+$/" ng-maxlength="8" ng-minlength="7">
+	 <button ng-click="save(car)" ng-disabled="carform.$invalid">Save</button>
+	 </form>
+	 <alert ng-show="carform.$invalid">field id invalid</alert>-->
 
-	 <h1>ng-bind</h1>
+     <h3>Add New Car Details:</h3>
+
+
+<form class="form-horizontal">
+  <div class="form-group">
+    <label class="col-sm-2 control-label"> Name:</label>
+    <div class="col-sm-10">
+    <input type="text" ng-model="car.name"  placeholder="Name">
+    </div>
+  </div> 
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Plate#:</label>
+    <div class="col-sm-10">
+    <input type="text" ng-model="car.plate" placeholder="Plate#">
+    </div>
+  </div>
+   <div class="form-group">
+    <label class="col-sm-2 control-label">Phoneno:</label>
+    <div class="col-sm-10">
+    <input type="text" ng-model="car.phno" placeholder="Phoneno">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Timein:</label>
+    <div class="col-sm-10">
+    <input type="text" ng-model="car.timein" placeholder="Timein">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-2 control-label">Timeout:</label>
+    <div class="col-sm-10">
+    <input type="text" ng-model="car.timeout" placeholder="Timeout">
+    </div>
+  </div>
+</form> 
+<hr>
+<button class="btn btn-success" ng-disabled="false"  ng-click="save(car)">
+<span class="glyphicon glyphicon-plus"></span>  Add User
+</button>
+<button class="btn btn-success" ng-disabled="false" ng-click="saveEditChanges()">
+    <span class="glyphicon glyphicon-save"></span>  Save Changes
+</button>
+</div>
+
+	<!-- <h1>ng-bind</h1>
 		<ul ng-repeat="x in cars">
 		   <li ng-bind="x.plate"></li>
 		</ul>
 		<br>
-		<h1>ng-include</h1>
-		<div ng-include = "views/hello.html">
-			hello
-		</div>
-
-
 		<div ng-style="{color: myColor}">
 
     <input type="text" ng-model="myColor" placeholder="enter a color name">
@@ -51,7 +112,17 @@
    </div>
    <p>
    <div ng-hide="myColor== 'red'">I will hide if the color is set to 'red'.</div>
-</div>
+</div>-->
+<script type="text/javascript" src="../bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="scripts/app.js"></script>
+    <script type="text/javascript" src="scripts/controllers.js"></script>
+    <script type="text/javascript" src="scripts/filters.js"></script>
+    <!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 
    
 
